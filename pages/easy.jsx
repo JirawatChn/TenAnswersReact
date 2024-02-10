@@ -67,7 +67,7 @@ export const Easy = () => {
         enter.innerHTML = "Play Again?";
       enter.removeEventListener("click", check);
       enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
-        window.location.reload();
+        window.location.href = window.location.href;
       });
     }
     setLeft(left - 1)
@@ -106,7 +106,7 @@ export const Easy = () => {
       enter.innerHTML = "Try Again?";
       enter.removeEventListener("click", check);
       enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
-        window.location.reload();
+        window.location.href = window.location.href;
       });
       console.log("i "+i)
       if (inputnum == random) {
@@ -122,7 +122,7 @@ export const Easy = () => {
         enter.innerHTML = "Play Again?";
         enter.removeEventListener("click", check);
       enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
-        window.location.reload();
+        window.location.href = window.location.href;
       });
       }
     }
