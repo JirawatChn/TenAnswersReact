@@ -8,7 +8,7 @@ import { Normal } from '../pages/normal';
 function App() {
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/TenAnswersReact">
       <Routes>
         <Route>
         <Route path="/" element={<Home/>} />
