@@ -13,7 +13,7 @@ export const Normal = () => {
   }
 
   const back = useNavigate()
-  const [readOnly,setReadOnly] = useState(false)
+  const [readOnly, setReadOnly] = useState(false)
   const [random, setRandom] = useState(randomnum)
   let [min, setMin] = useState(1)
   let [high, setHigh] = useState(99)
@@ -38,43 +38,44 @@ export const Normal = () => {
         "[" + i + "] Please Enter a Number!";
       return;
     }
-    if(i < 10){
-       if (inputnum < random) {
-      runnumber.innerHTML =
-        "[" + (i + 1) + "] The Number is more than " + inputnum;
-      document.getElementById("more").innerHTML +=
-        "[" + i + "] " + inputnum + "<br>";
-      setMin(min = inputnum)
-      console.log("more");
-    } else if (inputnum > random) {
-      runnumber.innerHTML =
-        "[" + (i + 1) + "] The Number is less than " + inputnum;
-      document.getElementById("less").innerHTML +=
-        "[" + i + "] " + inputnum + "<br>";
-      setHigh(high = inputnum)
-      console.log("less");
-    }else if(inputnum == random){
-      console.log("correct");
-      gameset.innerHTML = "You Win!";
-      gameset.style.color = "#67DB3F";
-      input.style.background = "#67DB3F";
-      diff.innerHTML = "The Number is " + random + "!"
-      setReadOnly(true)
-      runnumber.innerHTML =
-        "Correct! You guess " + i + " number " + "<br>" + "to win this game!";
-        enter.innerHTML = "Play Again?";
-      enter.removeEventListener("click", check);
-      enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
-        window.location.reload();
-      });
-    }
-    setLeft(left - 1)
-    setI(i + 1)
-    console.log("left "+left)
-    console.log("i "+i)
+    if (i < 10) {
+      if (inputnum < random) {
+        runnumber.innerHTML =
+          "[" + (i + 1) + "] The Number is more than " + inputnum;
+        document.getElementById("more").innerHTML +=
+          "[" + i + "] " + inputnum + "<br>";
+        setMin(min = inputnum)
+        console.log("more");
+      } else if (inputnum > random) {
+        runnumber.innerHTML =
+          "[" + (i + 1) + "] The Number is less than " + inputnum;
+        document.getElementById("less").innerHTML +=
+          "[" + i + "] " + inputnum + "<br>";
+        setHigh(high = inputnum)
+        console.log("less");
+      } else if (inputnum == random) {
+        console.log("correct");
+        gameset.innerHTML = "You Win!";
+        gameset.style.color = "#67DB3F";
+        input.style.background = "#67DB3F";
+        diff.innerHTML = "The Number is " + random + "!"
+        setReadOnly(true)
+        runnumber.innerHTML =
+          "Correct! You guess " + i + " number " + "<br>" + "to win this game!";
+        enter.style.opacity = 0
+        //   enter.innerHTML = "Play Again?";
+        // enter.removeEventListener("click", check);
+        // enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
+        //   window.location.reload();
+        // });
+      }
+      setLeft(left - 1)
+      setI(i + 1)
+      console.log("left " + left)
+      console.log("i " + i)
 
-    //รอบที่ 10
-    }else if(i === 10){
+      //รอบที่ 10
+    } else if (i === 10) {
       setLeft(left = 0)
       if (inputnum < random) {
         runnumber.innerHTML =
@@ -96,17 +97,20 @@ export const Normal = () => {
           "[" + i + "] Please Enter a Number!";
         return;
       }
-      runnumber.innerHTML ="The Number is " + random + "!";
+      runnumber.innerHTML = "The Number is " + random + "!";
       input.style.background = "#E33B3B";
       setReadOnly(true)
       gameset.innerHTML = "You Lose!";
       gameset.style.color = "#E33B3B";
-      enter.innerHTML = "Try Again?";
-      enter.removeEventListener("click", check);
-      enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
-        window.location.reload();
-      });
-      console.log("i "+i)
+      diff.innerHTML =
+      "The Number is " + random + "!";
+      enter.style.opacity = 0
+      // enter.innerHTML = "Try Again?";
+      // enter.removeEventListener("click", check);
+      // enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
+      //   window.location.reload();
+      // });
+      console.log("i " + i)
       if (inputnum == random) {
         console.log("correct");
         diff.innerHTML =
@@ -114,14 +118,15 @@ export const Normal = () => {
         gameset.innerHTML = "You Win!";
         gameset.style.color = "#67DB3F";
         input.style.background = "#67DB3F";
-        
+
         runnumber.innerHTML =
           "Correct! You guess " + i + " number " + "<br>" + "to win this game!";
-        enter.innerHTML = "Play Again?";
-        enter.removeEventListener("click", check);
-      enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
-        window.location.reload();
-      });
+        enter.style.opacity = 0
+        //   enter.innerHTML = "Play Again?";
+        //   enter.removeEventListener("click", check);
+        // enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
+        //   window.location.reload();
+        // });
       }
     }
 
@@ -143,7 +148,7 @@ export const Normal = () => {
       </div>
       <div id="runnumber" className="center" style={{ marginTop: '30px', fontSize: '20px' }}>[{i}] Enter Number</div>
       <div className="center" style={{ marginTop: '20px' }}>
-        <input id="inputnum" type="number" className="input" readOnly={readOnly}/>
+        <input id="inputnum" type="number" className="input" readOnly={readOnly} />
         <button id="enter" className="submit btn" style={{ marginTop: '50px' }} onClick={check}>Enter</button>
       </div>
       <div id="outleft" className="left" style={{ marginTop: '40px' }} >{left} left</div>
