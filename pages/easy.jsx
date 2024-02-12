@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Back,Mode, Recent,Hint, Left, Input } from "../src/component";
 
 export const Easy = () => {
 
@@ -8,9 +9,6 @@ export const Easy = () => {
     console.log('random ' + r)
     return r
   };
-  function refreshPage() {
-    window.location.reload(false);
-  }
 
   const back = useNavigate()
   const [readOnly, setReadOnly] = useState(false)
@@ -138,23 +136,15 @@ export const Easy = () => {
 
   return (
     <div className='hw'>
-      <button id="back" className="back btn" style={{ marginLeft: '5px', marginTop: '15px', marginBottom: '0px' }} onClick={() => { back('/') }}>Back</button>
-      <div id="gameset" className="center" style={{ fontSize: '40px', color: '#67DB3F', fontWeight: 'bold', marginTop: '0px' }}>Easy</div>
-      <div id="diff" className="center" style={{ fontSize: '25px', fontWeight: 'bold', marginTop: '5px' }}>{min}-{high} </div>
-      <div className="container">
-        <div className="box" style={{ marginTop: '30px', marginBottom: '0px' }}>more than </div>
-        <div className="box" style={{ marginTop: '30px', marginBottom: '0px' }}>less than  </div>
-      </div>
-      <div className="container-2">
-        <div id="more" className="round" style={{ marginTop: '-10px' }}></div>
-        <div id="less" className="round" style={{ marginTop: '-10px' }}></div>
-      </div>
-      <div id="runnumber" className="center" style={{ marginTop: '30px', fontSize: '20px' }}>[{i}] Enter Number</div>
+      <Back />
+      <Mode Name='Easy' min={min} high={high} Color='#67DB3F'/>
+      <Recent/>
+      <Hint round={i}/>
       <div className="center" style={{ marginTop: '20px' }}>
-        <input id="inputnum" type="number" className="input" readOnly={readOnly} />
+        <Input readOnly={readOnly}/>
         <button id="enter" className="submit btn" style={{ marginTop: '50px' }} onClick={check}>Enter</button>
       </div>
-      <div id="outleft" className="left" style={{ marginTop: '40px' }} >{left} left</div>
+     <Left left={left}/>
     </div>
   )
 }
