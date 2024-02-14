@@ -16,7 +16,7 @@ export const Normal = () => {
   let [i, setI] = useState(1)
   let [left, setLeft] = useState(11)
   const [value, setValue] = useState('')
-  const [repeat,setRepeat] = useState(1)
+  const [repeat, setRepeat] = useState(1)
   const [list, setList] = useState([])
 
   const handleChange = (e) => {
@@ -40,10 +40,10 @@ export const Normal = () => {
   const checklast = (rep) => {
     let inputnum = parseInt(document.getElementById("inputnum").value);
 
-    console.log('repeat '+list.includes(inputnum))
+    console.log('repeat ' + list.includes(inputnum))
     if (i >= 2 && i <= 10) {
       if (list.includes(inputnum) && inputnum != []) {
-        console.log('test 2 '+list.includes(inputnum))
+        console.log('test 2 ' + list.includes(inputnum))
         console.log('repeat ' + repeat);
         setRepeat(repeat + 1)
         if (repeat == 1) {
@@ -70,7 +70,7 @@ export const Normal = () => {
 
     list.push(inputnum)
     console.log(list)
-    
+
   }
 
   const morethan = () => {
@@ -109,10 +109,10 @@ export const Normal = () => {
     setReadOnly(true)
     runnumber.current.innerHTML =
       "Correct! You guess " + i + " number " + "<br>" + "to win this game!";
-    
-      enter.innerHTML = "Play Again?";
-    enter.removeEventListener("click", check);
-    enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
+
+    enter.current.innerHTML = "Play Again?";
+    enter.current.removeEventListener("click", check);
+    enter.current.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
       window.location.reload()
     });
   }
@@ -161,9 +161,9 @@ export const Normal = () => {
       gameset.current.style.color = "#E33B3B";
       diff.current.innerHTML =
         "The Number is " + random + "!";
-      enter.innerHTML = "Try Again?";
-      enter.removeEventListener("click", check);
-      enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
+      enter.current.innerHTML = "Try Again?";
+      enter.current.removeEventListener("click", check);
+      enter.current.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
         window.location.reload()
       });
       if (repeat == 9) {

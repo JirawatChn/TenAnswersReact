@@ -109,10 +109,10 @@ export const Easy = () => {
     setReadOnly(true)
     runnumber.current.innerHTML =
       "Correct! You guess " + i + " number " + "<br>" + "to win this game!";
-    
-      enter.innerHTML = "Play Again?";
-    enter.removeEventListener("click", check);
-    enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
+
+    enter.current.innerHTML = "Play Again?";
+    enter.current.removeEventListener("click", check);
+    enter.current.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
       window.location.reload()
     });
   }
@@ -161,9 +161,9 @@ export const Easy = () => {
       gameset.current.style.color = "#E33B3B";
       diff.current.innerHTML =
         "The Number is " + random + "!";
-      enter.innerHTML = "Try Again?";
-      enter.removeEventListener("click", check);
-      enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
+      enter.current.innerHTML = "Try Again?";
+      enter.current.removeEventListener("click", check);
+      enter.current.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
         window.location.reload()
       });
       if(repeat == 9){
