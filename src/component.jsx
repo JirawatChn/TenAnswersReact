@@ -17,7 +17,7 @@ export const Mode = ({ Name, min, high, Color,gameset,diff }) => {
     )
 }
 
-export const Recent = () => {
+export const Recent = ({more,less}) => {
     return (
         <div>
             <div className="container">
@@ -25,8 +25,8 @@ export const Recent = () => {
                 <div className="box" style={{ marginTop: '30px', marginBottom: '0px' }}>less than  </div>
             </div>
             <div className="container-2">
-                <div id="more" className="round" style={{ marginTop: '-10px' }}></div>
-                <div id="less" className="round" style={{ marginTop: '-10px' }}></div>
+                <div ref={more} className="round" style={{ marginTop: '-10px' }}></div>
+                <div ref={less} className="round" style={{ marginTop: '-10px' }}></div>
             </div>
         </div>
     )
@@ -44,7 +44,7 @@ export const Left = ({left}) =>{
 export const EnterInput = ({readOnly,check,enter,value,handleChange}) => {
     return (
         <div className="center" style={{ marginTop: '20px' }}>
-        <input maxLength={2} id="inputnum" type="number" className="input" readOnly={readOnly} value={value} onChange={handleChange}/>
+        <input id="inputnum" type="number" className="input" readOnly={readOnly} value={value} onChange={handleChange}/>
         <button ref={enter} className="submit btn" style={{ marginTop: '50px' }} onClick={check}>Enter</button>
         </div>
     )
