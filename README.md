@@ -2,4 +2,4 @@
 <b> Developer : </b> Jirawat Chanasit  <hr>
 <b> Preview : </b><br>
 <img src='./document/gameplay.jpg' alt='sample'><hr>
-<a href="https://JirawatChn.github.io/tenanswers" target="_blank">Try now</a>
+<a href="https://JirawatChn.github.io/TenAnswersReact/" target="_new">Try now</a>
