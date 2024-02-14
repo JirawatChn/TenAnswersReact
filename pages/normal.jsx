@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Back, Hint, Left, Mode, Recent, Input } from "../src/component";
+import { Back, Hint, Left, Mode, Recent, EnterInput } from "../src/component";
 
 export const Normal = () => {
 
@@ -16,58 +16,71 @@ export const Normal = () => {
   let [min, setMin] = useState(1)
   let [high, setHigh] = useState(99)
   let [i, setI] = useState(1)
-  let [left, setLeft] = useState(10)
+  let [left, setLeft] = useState(11)
+  const [value,setValue] = useState('')
+  let [list,setList] = useState([])
+
+  
+
+  const handleChange = (e) =>{
+    const inputValue = e.target.value;
+    if(inputValue.length <= 2){
+      setValue(inputValue)
+    }
+  }
+
+  useEffect(()=>{
+    setLeft(left - 1)
+  },[i])
+
+  const gameset = useRef()
+  const enter = useRef()
+  const runnumber = useRef()
+  const diff = useRef()
 
   const check = () => {
 
     let input = document.getElementById("inputnum")
     let inputnum = parseInt(document.getElementById("inputnum").value);
-    let runnumber = document.getElementById("runnumber");
-    let outleft = document.getElementById("outleft");
-    let diff = document.getElementById("diff");
-    let gameset = document.getElementById("gameset");
-    let back = document.getElementById("back");
-    let enter = document.getElementById("enter");
+
+    
 
     console.log(inputnum)
     // console.log(random)
     if (!inputnum) {
-      runnumber.innerHTML =
+      runnumber.current.innerHTML =
         "[" + i + "] Please Enter a Number!";
       return;
     }
     if (i < 10) {
       if (inputnum < random) {
-        runnumber.innerHTML =
+        runnumber.current.innerHTML =
           "[" + (i + 1) + "] The Number is more than " + inputnum;
         document.getElementById("more").innerHTML +=
           "[" + i + "] " + inputnum + "<br>";
-        setMin(min = inputnum)
         console.log("more");
       } else if (inputnum > random) {
-        runnumber.innerHTML =
+        runnumber.current.innerHTML =
           "[" + (i + 1) + "] The Number is less than " + inputnum;
         document.getElementById("less").innerHTML +=
           "[" + i + "] " + inputnum + "<br>";
-        setHigh(high = inputnum)
         console.log("less");
       } else if (inputnum == random) {
         console.log("correct");
-        gameset.innerHTML = "You Win!";
-        gameset.style.color = "#67DB3F";
+        gameset.current.innerHTML = "You Win!";
+        gameset.current.style.color = "#67DB3F";
         input.style.background = "#67DB3F";
-        diff.innerHTML = "The Number is " + random + "!"
+        diff.current.innerHTML = "The Number is " + random + "!"
         setReadOnly(true)
-        runnumber.innerHTML =
+        runnumber.current.innerHTML =
           "Correct! You guess " + i + " number " + "<br>" + "to win this game!";
-        enter.style.opacity = 0
+        enter.current.style.opacity = 0
         //   enter.innerHTML = "Play Again?";
         // enter.removeEventListener("click", check);
         // enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
-        //   reloadPage()
+        //   window.location.reload()
         // });
       }
-      setLeft(left - 1)
       setI(i + 1)
       console.log("left " + left)
       console.log("i " + i)
@@ -76,54 +89,52 @@ export const Normal = () => {
     } else if (i === 10) {
       setLeft(left = 0)
       if (inputnum < random) {
-        runnumber.innerHTML =
+        runnumber.current.innerHTML =
           "[" + (i + 1) + "] The Number is more than " + inputnum;
         document.getElementById("more").innerHTML +=
           "[" + i + "] " + inputnum + "<br>";
-        setMin(min = inputnum)
         console.log("more");
       } else if (inputnum > random) {
-        runnumber.innerHTML =
+        runnumber.current.innerHTML =
           "[" + (i + 1) + "] The Number is less than " + inputnum;
         document.getElementById("less").innerHTML +=
           "[" + i + "] " + inputnum + "<br>";
-        setHigh(high = inputnum)
         console.log("less");
       }
       if (!inputnum) {
-        runnumber.innerHTML =
+        runnumber.current.innerHTML =
           "[" + i + "] Please Enter a Number!";
         return;
       }
-      runnumber.innerHTML = "The Number is " + random + "!";
+      runnumber.current.innerHTML = "The Number is " + random + "!";
       input.style.background = "#E33B3B";
       setReadOnly(true)
-      gameset.innerHTML = "You Lose!";
-      gameset.style.color = "#E33B3B";
-      diff.innerHTML =
+      gameset.current.innerHTML = "You Lose!";
+      gameset.current.style.color = "#E33B3B";
+      diff.current.innerHTML =
         "The Number is " + random + "!";
-      enter.style.opacity = 0
+      enter.current.style.opacity = 0
       // enter.innerHTML = "Try Again?";
       // enter.removeEventListener("click", check);
       // enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
-      //   reloadPage()
+      //   window.location.reload()
       // });
       console.log("i " + i)
       if (inputnum == random) {
         console.log("correct");
-        diff.innerHTML =
+        diff.current.innerHTML =
           "The Number is " + random + "!";
-        gameset.innerHTML = "You Win!";
-        gameset.style.color = "#67DB3F";
+        gameset.current.innerHTML = "You Win!";
+        gameset.current.current.style.color = "#67DB3F";
         input.style.background = "#67DB3F";
 
-        runnumber.innerHTML =
+        runnumber.current.innerHTML =
           "Correct! You guess " + i + " number " + "<br>" + "to win this game!";
-        enter.style.opacity = 0
+        enter.current.style.opacity = 0
         //   enter.innerHTML = "Play Again?";
         //   enter.removeEventListener("click", check);
         // enter.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
-        //   reloadPage()
+        //   window.location.reload()
         // });
       }
     }
@@ -131,16 +142,21 @@ export const Normal = () => {
 
   }
 
+  const checklast = () =>{
+    let inputnum = parseInt(document.getElementById("inputnum").value);
+
+    list.push(inputnum)
+    console.log(list)
+    
+
+  }
   return (
     <div className='hw'>
       <Back />
-      <Mode Name='Normal' min={min} high={high} Color='#FF8E25' />
+      <Mode Name='Normal' min={min} high={high} Color='#FF8E25' gameset={gameset} diff={diff}/>
       <Recent />
-      <Hint round={i} />
-      <div className="center" style={{ marginTop: '20px' }}>
-        <Input readOnly={readOnly} />
-        <button id="enter" className="submit btn" style={{ marginTop: '50px' }} onClick={check}>Enter</button>
-      </div>
+      <Hint round={i} runnumber={runnumber}/>
+      <EnterInput enter={enter} readOnly={readOnly} check={check} value={value} handleChange={handleChange}/>
       <Left left={left} />
     </div>
   )
