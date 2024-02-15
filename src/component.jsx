@@ -50,5 +50,3 @@ export const EnterInput = ({ readOnly, check, enter, value, handleChange, input 
 export const Left = ({ left }) => {
     return <div className="left" style={{ marginTop: '30px' }} >{left} left</div>
 }
-
-
