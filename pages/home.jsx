@@ -6,8 +6,8 @@ export const Home = () =>{
     const goto = useNavigate()
     
     return (
-        <div className="center">
-            <div style={{fontSize: '40px',fontWeight: 'bold', marginTop: '100px'}} className="textin">Ten Answers</div>
+        <div className="center hw">
+            <div className="tenanswers">TenAnswers</div>
             <button className="button btn" style={{marginTop: '120px'}} onClick={() => goto('/easy')}>Easy</button>
             <button className="button btn" style={{backgroundColor: '#FF8E25'}} onClick={() => goto('/normal')}>Normal</button>  
         </div>

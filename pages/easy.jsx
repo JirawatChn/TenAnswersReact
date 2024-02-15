@@ -18,6 +18,7 @@ export const Easy = () => {
   const [value, setValue] = useState('')
   const [repeat, setRepeat] = useState(1)
   const [list, setList] = useState([])
+  const goto = useRef()
 
   const handleChange = (e) => {
     const inputValue = e.target.value;
@@ -36,14 +37,14 @@ export const Easy = () => {
   const diff = useRef()
   const more = useRef()
   const less = useRef()
+  const input = useRef()
+  let [inputnum, setInputnum] = useState(0)
 
   const checklast = (rep) => {
-    let inputnum = parseInt(document.getElementById("inputnum").value);
-
-    console.log('repeat '+list.includes(inputnum))
+    console.log('repeat ' + list.includes(inputnum))
     if (i >= 2 && i <= 10) {
       if (list.includes(inputnum) && inputnum != []) {
-        console.log('test 2 '+list.includes(inputnum))
+        // console.log('test 2 '+list.includes(inputnum))
         console.log('repeat ' + repeat);
         setRepeat(repeat + 1)
         if (repeat == 1) {
@@ -70,13 +71,10 @@ export const Easy = () => {
 
     list.push(inputnum)
     console.log(list)
-    
+
   }
 
   const morethan = () => {
-    let input = document.getElementById("inputnum")
-    let inputnum = parseInt(document.getElementById("inputnum").value);
-
     runnumber.current.innerHTML =
       "[" + (i + 1) + "] The Number is more than " + inputnum;
     more.current.innerHTML +=
@@ -86,9 +84,6 @@ export const Easy = () => {
   }
 
   const lessthan = () => {
-    let input = document.getElementById("inputnum")
-    let inputnum = parseInt(document.getElementById("inputnum").value);
-
     runnumber.current.innerHTML =
       "[" + (i + 1) + "] The Number is less than " + inputnum;
     less.current.innerHTML +=
@@ -98,13 +93,11 @@ export const Easy = () => {
   }
 
   const win = () => {
-    let input = document.getElementById("inputnum")
-    let inputnum = parseInt(document.getElementById("inputnum").value);
 
     console.log("correct");
     gameset.current.innerHTML = "You Win!";
     gameset.current.style.color = "#67DB3F";
-    input.style.background = "#67DB3F";
+    input.current.style.background = "#67DB3F";
     diff.current.innerHTML = "The Number is " + random + "!"
     setReadOnly(true)
     runnumber.current.innerHTML =
@@ -118,11 +111,8 @@ export const Easy = () => {
   }
 
   const check = () => {
-
-    let input = document.getElementById("inputnum")
-    let inputnum = parseInt(document.getElementById("inputnum").value);
-
-    console.log(inputnum)
+    setInputnum(inputnum = input.current.value)
+    console.log('inputnum ' + inputnum)
     // console.log(random)
     if (!inputnum) {
       runnumber.current.innerHTML =
@@ -155,7 +145,7 @@ export const Easy = () => {
         return;
       }
       runnumber.current.innerHTML = "The Number is " + random + "!";
-      input.style.background = "#E33B3B";
+      input.current.style.background = "#E33B3B";
       setReadOnly(true)
       gameset.current.innerHTML = "You Lose!";
       gameset.current.style.color = "#E33B3B";
@@ -166,7 +156,7 @@ export const Easy = () => {
       enter.current.addEventListener("click", () => { // เพิ่ม event listener ใหม่ที่ทำการ reload หน้าเว็บ
         window.location.reload()
       });
-      if(repeat == 9){
+      if (repeat == 9) {
         diff.current.innerHTML = "You repeat it 10 times?";
       }
       console.log("i " + i)
@@ -178,11 +168,11 @@ export const Easy = () => {
 
   return (
     <div className='hw'>
-      <Back />
+      <Back goto={goto} />
       <Mode Name='Easy' min={min} high={high} Color='#67DB3F' gameset={gameset} diff={diff} />
       <Recent more={more} less={less} />
       <Hint round={i} runnumber={runnumber} />
-      <EnterInput enter={enter} readOnly={readOnly} check={check} value={value} handleChange={handleChange} />
+      <EnterInput enter={enter} readOnly={readOnly} check={check} value={value} handleChange={handleChange} input={input} />
       <Left left={left} />
     </div>
   )
