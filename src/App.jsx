@@ -10,11 +10,9 @@ function App() {
   return (
     <BrowserRouter basename="/TenAnswersReact">
       <Routes>
-        <Route>
         <Route path="/" element={<Home/>} />
         <Route path="/easy" element={<Easy />} />
         <Route path="/normal" element={<Normal />} />
-        </Route>
       </Routes>
     </BrowserRouter>
   )

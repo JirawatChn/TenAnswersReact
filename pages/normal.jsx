@@ -27,8 +27,8 @@ export const Normal = () => {
   }
 
   useEffect(() => {
-    setLeft(left - 1)
-  }, [i])
+    return () => setLeft(left - 1)
+  },[i])
 
   const gameset = useRef()
   const enter = useRef()
